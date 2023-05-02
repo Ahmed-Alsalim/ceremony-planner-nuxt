@@ -9,15 +9,18 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "nuxt": "^3.4.3",
+    "@mdi/font": "^7.2.96",
     "@nuxtjs/i18n": "^8.0.0-beta.11",
     "@pinia/nuxt": "^0.4.9",
-    "@sfxcode/nuxt-primevue": "^1.1.4"
+    "nuxt": "^3.4.3",
+    "sass": "^1.62.1",
+    "vuetify": "^3.2.1"
   },
   "devDependencies": {
     "@nuxt/devtools": "^0.4.5",
     "@nuxtjs/eslint-module": "^4.0.2",
     "@types/node": "^18",
+    "eslint": "^8.39.0",
     "eslint-plugin-vue": "^9.11.0"
   }
 }

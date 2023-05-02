@@ -1,27 +1,20 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
-    '@sfxcode/nuxt-primevue',
-    '@pinia/nuxt',
     '@nuxtjs/i18n',
+    '@pinia/nuxt',
   ],
   build: {
-    transpile: ['primevue']
+    transpile: ['vuetify']
   },
   css: [
-    'primevue/resources/primevue.css',
-    'primevue/resources/themes/saga-blue/theme.css',
-    'primeicons/primeicons.css',
+    'vuetify/lib/styles/main.sass',
+    '@mdi/font/css/materialdesignicons.min.css',
   ],
-  primevue: {
-    config: {
-      ripple: true
-    }
-  },
   i18n: {
     vueI18n: './i18n.config.ts'  
   },
-  devtools:{
-    enabled: true
-  },
+  // devtools:{
+  //   enabled: true
+  // },
 })

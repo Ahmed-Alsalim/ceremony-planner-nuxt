@@ -8,6 +8,7 @@ module.exports = {
   extends: ["plugin:vue/vue3-recommended",],
   rules: {
     "indent": ["error", 2],
+    "no-trailing-spaces": "error",
     'vue/multi-word-component-names': 0,
     'padding-line-between-statements': [
       'error',
@@ -27,7 +28,7 @@ module.exports = {
     "vue/max-attributes-per-line": ["error", {
       "singleline": {
         "max": 3
-      },      
+      },
     }],
   },
 };

@@ -5,10 +5,10 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ["plugin:vue/vue3-recommended",],
+  extends: ['plugin:vue/vue3-recommended'],
   rules: {
-    "indent": ["error", 2],
-    "no-trailing-spaces": "error",
+    'indent': ['error', 2],
+    'no-trailing-spaces': 'error',
     'vue/multi-word-component-names': 0,
     'padding-line-between-statements': [
       'error',
@@ -24,11 +24,16 @@ module.exports = {
       ],
     }],
     'no-underscore-dangle': 'off',
-    "vue/singleline-html-element-content-newline": "off",
-    "vue/max-attributes-per-line": ["error", {
-      "singleline": {
-        "max": 3
+    'no-unused-vars': 'warn',
+    'semi': ['error', 'always'],
+    'quotes': ['error', 'single'],
+    'comma-dangle': ['error', 'always-multiline'],
+    'vue/singleline-html-element-content-newline': 'off',
+    'vue/max-attributes-per-line': ['error', {
+      'singleline': {
+        'max': 3,
       },
     }],
+    'object-curly-spacing': ['error', 'always'],
   },
 };

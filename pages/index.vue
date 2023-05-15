@@ -1,11 +1,12 @@
 <script setup>
-import { useDisplay } from 'vuetify'
+import { useDisplay } from 'vuetify';
 
+const { xs } = useDisplay();
 const columns = [
   { field: 'mainTitle', header: 'Main Topic' },
   { field: 'subTitle', header: 'Sub Topic' },
   { field: 'sermonTitle', header: 'Sermon Title' },
-]
+];
 const tableData = ref([
   {
     mainTitle: 'Main Topic 1',
@@ -24,7 +25,7 @@ const tableData = ref([
           'sermon 3',
         ],
       },
-    ]
+    ],
   },
   {
     mainTitle: 'Main Topic 2',
@@ -37,28 +38,38 @@ const tableData = ref([
       },
     ],
   },
-])
-
-
+]);
 const formData = ref({
   mainTitle: '',
   subBouquets:[
     { subTitle: '',
       sermonsTitles: [''],
     }],
-})
+});
 
-const { xs } = useDisplay()
 
-const dialogVisible = ref(false)
+const dialogVisible = ref(false);
+const selectedItem = ref({ data: null, i: null });
 
-const print = (x) => {
-  console.debug('print', x)
-}
+watch (dialogVisible, (val) => {
+  if (!val) {
+    selectedItem.value = { data: null, i: null };
+  }
+});
+
+const editItem = ({ data, i }) => {
+  dialogVisible.value = true;
+  selectedItem.value.data = data;
+  selectedItem.value.i = i;
+};
 
 const save = (data) => {
-  dialogVisible.value = false
-}
+  if (selectedItem.value.data) {
+    tableData.value[selectedItem.value.i] = data;
+  } else {
+    tableData.value.push(data);
+  }
+};
 
 </script>
 
@@ -66,7 +77,11 @@ const save = (data) => {
   <v-container>
     <v-btn @click="dialogVisible = true">edit</v-btn>
 
-    <SummaryList v-if="xs" :table-data="tableData" />
+    <SummaryList
+      v-if="xs"
+      :table-data="tableData"
+      @edit="editItem"
+    />
 
     <SummaryTable
       v-else
@@ -77,8 +92,11 @@ const save = (data) => {
     <br><br><br><br>
     {{ tableData }}
 
-    <v-dialog
-      v-model:visible="dialogVisible"
+    <LazyAddDialog
+      v-if="dialogVisible"
+      v-model="dialogVisible"
+      :selected-item="selectedItem.data"
+      @save="save"
     />
   </v-container>
 </template>

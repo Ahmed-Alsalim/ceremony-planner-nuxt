@@ -2,7 +2,10 @@
 import { useDisplay } from 'vuetify';
 
 const { xs } = useDisplay();
+
+const locale = ref('en');
 const columns = [
+  { field: 'actions' },
   { field: 'mainTitle', header: 'Main Topic' },
   { field: 'subTitle', header: 'Sub Topic' },
   { field: 'sermonTitle', header: 'Sermon Title' },
@@ -57,6 +60,9 @@ watch (dialogVisible, (val) => {
   }
 });
 
+const setLocale = () => {
+  locale.value = locale.value === 'en' ? 'ar' : 'en';
+};
 const editItem = ({ data, i }) => {
   dialogVisible.value = true;
   selectedItem.value.data = data;
@@ -75,28 +81,38 @@ const save = (data) => {
 
 <template>
   <v-container>
-    <v-btn @click="dialogVisible = true">edit</v-btn>
+    <v-locale-provider :locale="locale">
+      <v-btn @click="dialogVisible = true">edit</v-btn>
+      <v-btn color="success" @click="setLocale">{{ locale }}</v-btn>
 
-    <SummaryList
-      v-if="xs"
-      :table-data="tableData"
-      @edit="editItem"
-    />
+      <SummaryList
+        v-if="xs"
+        :table-data="tableData"
+        @edit="editItem"
+      />
 
-    <SummaryTable
-      v-else
-      :columns="columns"
-      :table-data="tableData"
-    />
+      <SummaryTable
+        v-else
+        :columns="columns"
+        :table-data="tableData"
+        @edit="editItem"
+      />
 
-    <br><br><br><br>
-    {{ tableData }}
+      <br><br><br><br>
+      {{ tableData }}
 
-    <LazyAddDialog
-      v-if="dialogVisible"
-      v-model="dialogVisible"
-      :selected-item="selectedItem.data"
-      @save="save"
-    />
+      <LazyAddDialog
+        v-if="dialogVisible"
+        v-model="dialogVisible"
+        :selected-item="selectedItem.data"
+        @save="save"
+      />
+    </v-locale-provider>
   </v-container>
 </template>
+
+<style>
+ .v-expansion-panel-title__overlay {
+  background-color: #035fff45 !important;
+ }
+</style>

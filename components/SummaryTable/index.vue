@@ -8,13 +8,15 @@ defineProps({
     type: Array,
     required: true,
   },
-})
+});
+
+const emit = defineEmits(['edit']);
 
 const sermonsCount = (mainTopic) => {
   return mainTopic.subBouquets.reduce((count, subBouquet) => {
-    return count + subBouquet.sermonsTitles.length
-  }, 0)
-}
+    return count + subBouquet.sermonsTitles.length;
+  }, 0);
+};
 
 </script>
 
@@ -34,13 +36,25 @@ const sermonsCount = (mainTopic) => {
         </tr>
       </thead>
       <tbody>
-        <template v-for="item in tableData">
+        <template v-for="(item, i) in tableData">
           <template v-for="(subBouquet, i2) in item.subBouquets">
             <tr
               v-for="(sermonTitle, i3) in subBouquet.sermonsTitles"
               :key="i3"
               class="border border-gray-200"
             >
+              <td
+                v-if="i2 === 0 && i3 === 0"
+                :rowspan="sermonsCount(item)"
+                width="1"
+              >
+                <v-btn
+                  icon="mdi-pencil"
+                  variant="text"
+                  @click.stop="emit('edit', {data: item, i})"
+                />
+              </td>
+
               <td
                 v-if="i2 === 0 && i3 === 0"
                 :rowspan="sermonsCount(item)"

@@ -71,14 +71,18 @@ const save = () => {
       </v-card-title>
 
       <v-card-text>
-        <v-expansion-panels :model-value="[0, 1, 2, 3, 4]" multiple>
+        <v-expansion-panels
+          v-if="formData.mainTitle"
+          :model-value="[0, 1, 2, 3, 4]"
+          multiple
+        >
           <v-expansion-panel
             v-for="(subBouquet, i2) in formData.subBouquets"
             :key="i2"
             expand
             focusable
           >
-            <v-expansion-panel-title>
+            <v-expansion-panel-title color="white">
               <v-text-field
                 v-model="formData.subBouquets[i2].subTitle"
                 label="Sub Bouquet Title"
@@ -87,7 +91,7 @@ const save = () => {
                 @click.stop
               />
             </v-expansion-panel-title>
-            <v-expansion-panel-text>
+            <v-expansion-panel-text v-if="formData.subBouquets[i2].subTitle">
               <v-list>
                 <v-list-item
                   v-for="(sermonTitle, i3) in subBouquet.sermonsTitles"
@@ -96,7 +100,8 @@ const save = () => {
                   <v-list-item-title>
                     <v-text-field
                       v-model="formData.subBouquets[i2].sermonsTitles[i3]"
-                      label="Sermon Title"
+                      bg-color="white"
+                      :label="$t('sermon.title') + ` ${i3+1}`"
                       hide-details
                     />
                   </v-list-item-title>

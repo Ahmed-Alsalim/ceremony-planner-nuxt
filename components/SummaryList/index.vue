@@ -1,10 +1,5 @@
 <script setup>
-defineProps({
-  tableData: {
-    type: Array,
-    required: true,
-  },
-});
+const tableData = useTableData();
 
 const emit = defineEmits(['edit']);
 
@@ -20,7 +15,7 @@ onMounted(() => expanded.value = [0, 1, 2, 3, 4]);
         :key="i"
         focusable
       >
-        <v-expansion-panel-title color="blue-lighten-4">
+        <v-expansion-panel-title color="blue-lighten-4" class="py-0">
           {{ item.mainTitle }}
           <v-spacer />
           <v-btn
@@ -34,14 +29,13 @@ onMounted(() => expanded.value = [0, 1, 2, 3, 4]);
             <v-expansion-panel
               v-for="(subBouquet, i2) in item.subBouquets"
               :key="i2"
-              expand
               focusable
             >
               <v-expansion-panel-title>
                 {{ subBouquet.subTitle }}
               </v-expansion-panel-title>
               <v-expansion-panel-text>
-                <v-list density="compact">
+                <v-list density="comfortable" class="py-0">
                   <v-list-item
                     v-for="(sermonTitle, i3) in subBouquet.sermonsTitles"
                     :key="i3"
@@ -59,3 +53,9 @@ onMounted(() => expanded.value = [0, 1, 2, 3, 4]);
     </v-expansion-panels>
   </v-no-ssr>
 </template>
+
+<style scoped>
+.v-expansion-panel--active > .v-expansion-panel-title {
+    min-height: 52px;
+}
+</style>

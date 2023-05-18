@@ -63,7 +63,7 @@ const save = () => {
       <v-card-title primary-title>
         <v-text-field
           v-model="formData.mainTitle"
-          label="Main Topic"
+          :label="$t('main.theme')"
           variant="outlined"
           class="mt-3"
           hide-details
@@ -85,7 +85,7 @@ const save = () => {
             <v-expansion-panel-title color="white">
               <v-text-field
                 v-model="formData.subBouquets[i2].subTitle"
-                label="Sub Bouquet Title"
+                :label="$t('sub.bouquet.title')"
                 variant="outlined"
                 hide-details
                 @click.stop
@@ -113,7 +113,7 @@ const save = () => {
                     block
                     @click="addSermonTitle(i2)"
                   >
-                    {{ $t('add.sermon.title') }}
+                    {{ $t('add.sermon') }}
                   </v-btn>
                 </v-list-item>
               </v-list>
@@ -126,7 +126,7 @@ const save = () => {
             block
             @click="addSubBouquet"
           >
-            {{ $t('add.sub.bouquet') }}
+            {{ $t('add.bouquet') }}
           </v-btn>
         </v-expansion-panels>
       </v-card-text>

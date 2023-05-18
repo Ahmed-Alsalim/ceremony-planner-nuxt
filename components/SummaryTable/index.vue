@@ -1,16 +1,13 @@
 <script setup>
-defineProps({
-  columns: {
-    type: Array,
-    required: true,
-  },
-  tableData: {
-    type: Array,
-    required: true,
-  },
-});
-
 const emit = defineEmits(['edit']);
+
+const tableData = useTableData();
+const columns = [
+  { key: 'actions', title: '' },
+  { key: 'mainTitle', title: 'main.themes' },
+  { key: 'subTitle', title: 'sub.bouquets' },
+  { key: 'sermonTitle', title: 'sermon.titles' },
+];
 
 const sermonsCount = (mainTopic) => {
   return mainTopic.subBouquets.reduce((count, subBouquet) => {
@@ -27,11 +24,11 @@ const sermonsCount = (mainTopic) => {
         <tr>
           <th
             v-for="column in columns"
-            :key="column.field"
+            :key="column.key"
             scope="col"
             class="py-2"
           >
-            {{ column.header }}
+            {{ $t(column.title) }}
           </th>
         </tr>
       </thead>

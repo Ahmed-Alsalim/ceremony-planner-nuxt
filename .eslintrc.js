@@ -26,11 +26,14 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'no-unused-vars': 'warn',
     'semi': ['error', 'always'],
-    'quotes': ['error', 'single'],
+    'quotes': ['error', 'single', { 'avoidEscape': true }],
     'comma-dangle': ['error', 'always-multiline'],
     'vue/singleline-html-element-content-newline': 'off',
     'vue/max-attributes-per-line': ['error', {
       'singleline': {
+        'max': 3,
+      },
+      'multiline': {
         'max': 3,
       },
     }],

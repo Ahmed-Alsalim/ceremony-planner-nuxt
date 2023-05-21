@@ -30,8 +30,6 @@ const save = (data) => {
 </script>
 
 <template>
-  <v-btn @click="dialogVisible = true">edit</v-btn>
-
   <SummaryList
     v-if="xs"
     @edit="editItem"
@@ -43,9 +41,6 @@ const save = (data) => {
     @edit="editItem"
   />
 
-  <br><br><br><br>
-  {{ tableData }}
-
   <LazyAddDialog
     v-if="dialogVisible"
     v-model="dialogVisible"
@@ -53,9 +48,3 @@ const save = (data) => {
     @save="save"
   />
 </template>
-
-<style>
- .v-expansion-panel-title__overlay {
-  background-color: #035fff45 !important;
- }
-</style>

@@ -1,37 +1,21 @@
 <script setup>
-const { locale, setLocale } = useI18n();
-
-const toggleLocale = () => {
-  setLocale(locale.value === 'ar' ? 'en' : 'ar');
-};
+const { locale } = useI18n();
 
 </script>
 
 <template>
   <NuxtLayout>
-    <v-toolbar :elevation="2">
-      <v-app-bar-nav-icon />
+    <v-app class="pb-4">
+      <NavBar />
 
-      <v-toolbar-title>{{ $t('annual.sermon.plan') }}</v-toolbar-title>
-      <v-spacer />
-
-      <nuxtLink to="/">
-        <v-btn text>{{ $t('summary.table') }}</v-btn>
-      </nuxtLink>
-
-      <nuxtLink to="/dateSheet">
-        <v-btn text>{{ $t('date.sheet') }}</v-btn>
-      </nuxtLink>
-
-      <v-btn icon="mdi-dots-vertical" />
-
-      <v-btn size="small" color="success" @click="toggleLocale">{{ locale }}</v-btn>
-    </v-toolbar>
-
-    <v-locale-provider :locale="locale">
-      <v-container>
-        <NuxtPage />
-      </v-container>
-    </v-locale-provider>
+      <v-main>
+        <v-locale-provider :locale="locale">
+          <v-container>
+            <NuxtPage />
+          </v-container>
+        </v-locale-provider>
+      </v-main>
+    </v-app>
   </NuxtLayout>
 </template>
+

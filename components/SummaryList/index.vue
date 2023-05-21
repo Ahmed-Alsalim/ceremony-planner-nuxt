@@ -10,12 +10,25 @@ onMounted(() => expanded.value = [0, 1, 2, 3, 4]);
 <template>
   <v-no-ssr>
     <v-expansion-panels v-model="expanded" multiple>
+      <v-btn
+        v-if="tableData.length < 4"
+        :text="$t('add.bouquet')"
+        prepend-icon="mdi-plus"
+        color="success"
+        class="mb-2"
+        block
+        @click="emit('edit', {data: null, i: null})"
+      />
+
       <v-expansion-panel
         v-for="(item, i) in tableData"
         :key="i"
         focusable
       >
-        <v-expansion-panel-title color="blue-lighten-4" class="py-0">
+        <v-expansion-panel-title
+          color="blue-lighten-4"
+          class="py-0"
+        >
           {{ item.mainTitle }}
           <v-spacer />
           <v-btn
@@ -31,7 +44,7 @@ onMounted(() => expanded.value = [0, 1, 2, 3, 4]);
               :key="i2"
               focusable
             >
-              <v-expansion-panel-title>
+              <v-expansion-panel-title color="blue-lighten-5">
                 {{ subBouquet.subTitle }}
               </v-expansion-panel-title>
               <v-expansion-panel-text>
@@ -54,8 +67,12 @@ onMounted(() => expanded.value = [0, 1, 2, 3, 4]);
   </v-no-ssr>
 </template>
 
-<style scoped>
-.v-expansion-panel--active > .v-expansion-panel-title {
+<style>
+  .v-expansion-panel--active > .v-expansion-panel-title {
     min-height: 52px;
-}
+  }
+
+  .v-expansion-panel-title__overlay {
+    background-color: unset;
+  }
 </style>

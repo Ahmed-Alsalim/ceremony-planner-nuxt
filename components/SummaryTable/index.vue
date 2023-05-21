@@ -28,7 +28,20 @@ const sermonsCount = (mainTopic) => {
             scope="col"
             class="py-2"
           >
-            {{ $t(column.title) }}
+            <template v-if="column.key === 'actions' && tableData.length < 4">
+              <v-btn
+                icon="mdi-plus"
+                density="comfortable"
+                variant="text"
+                color="success"
+                @click="emit('edit', {data: null, i: null})"
+              >
+                <v-tooltip :text="$t('add')" activator="parent" location="bottom" />
+              </v-btn>
+            </template>
+            <template v-else>
+              {{ $t(column.title) }}
+            </template>
           </th>
         </tr>
       </thead>
@@ -47,6 +60,7 @@ const sermonsCount = (mainTopic) => {
               >
                 <v-btn
                   icon="mdi-pencil"
+                  density="comfortable"
                   variant="text"
                   @click.stop="emit('edit', {data: item, i})"
                 />

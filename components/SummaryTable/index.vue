@@ -30,12 +30,13 @@ const sermonsCount = (mainTopic) => {
           >
             <template v-if="column.key === 'actions' && tableData.length < 4">
               <v-btn
-                icon="mdi-plus"
                 density="comfortable"
                 variant="text"
                 color="success"
+                icon
                 @click="emit('edit', {data: null, i: null})"
               >
+                <v-icon icon="mdi-plus" />
                 <v-tooltip :text="$t('add')" activator="parent" location="bottom" />
               </v-btn>
             </template>

@@ -1,8 +1,9 @@
 <script setup>
-const { locale, setLocale } = useI18n();
+import { useI18n } from 'vue-i18n';
+const { locale } = useI18n();
 
 const toggleLocale = () => {
-  setLocale(locale.value === 'ar' ? 'en' : 'ar');
+  locale.value = locale.value === 'ar' ? 'en' : 'ar';
 };
 
 import { useDisplay } from 'vuetify';

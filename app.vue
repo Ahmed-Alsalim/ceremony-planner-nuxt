@@ -1,15 +1,10 @@
-<script setup>
-const { locale } = useI18n();
-
-</script>
-
 <template>
   <NuxtLayout>
     <v-app class="pb-4">
       <NavBar />
 
       <v-main>
-        <v-locale-provider :locale="locale">
+        <v-locale-provider :locale="$i18n.locale">
           <v-container>
             <NuxtPage />
           </v-container>

@@ -4,14 +4,11 @@ import { mdiPlus, mdiPencil } from '@mdi/js';
 const tableData = useTableData();
 
 const emit = defineEmits(['edit']);
-
-const expanded = ref();
-onMounted(() => expanded.value = [0, 1, 2, 3, 4]);
 </script>
 
 <template>
   <v-no-ssr>
-    <v-expansion-panels v-model="expanded" multiple>
+    <v-expansion-panels multiple>
       <v-btn
         v-if="tableData.length < 4"
         :text="$t('add.main.theme')"
@@ -40,7 +37,7 @@ onMounted(() => expanded.value = [0, 1, 2, 3, 4]);
           />
         </v-expansion-panel-title>
         <v-expansion-panel-text>
-          <v-expansion-panels :model-value="[0, 1, 2, 3, 4]" multiple>
+          <v-expansion-panels multiple>
             <v-expansion-panel
               v-for="(subBouquet, i2) in item.subBouquets"
               :key="i2"

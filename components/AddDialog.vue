@@ -1,4 +1,6 @@
 <script setup>
+import { mdiPlus } from '@mdi/js';
+
 const props = defineProps({
   modelValue: {
     type: Boolean,
@@ -111,7 +113,7 @@ const save = () => {
                 <v-list-item v-if="subBouquet.sermonsTitles?.length < 4">
                   <v-btn
                     :text="$t('add.sermon')"
-                    prepend-icon="mdi-plus"
+                    :prepend-icon="mdiPlus"
                     color="success"
                     block
                     @click="addSermonTitle(i2)"
@@ -123,7 +125,7 @@ const save = () => {
           <v-btn
             v-if="formData.subBouquets?.length < 4"
             :text="$t('add.bouquet')"
-            prepend-icon="mdi-plus"
+            :prepend-icon="mdiPlus"
             color="success"
             class="mt-2"
             block

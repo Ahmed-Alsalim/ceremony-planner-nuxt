@@ -1,4 +1,6 @@
 <script setup>
+import { mdiPlus, mdiPencil } from '@mdi/js';
+
 const tableData = useTableData();
 
 const emit = defineEmits(['edit']);
@@ -13,7 +15,7 @@ onMounted(() => expanded.value = [0, 1, 2, 3, 4]);
       <v-btn
         v-if="tableData.length < 4"
         :text="$t('add.bouquet')"
-        prepend-icon="mdi-plus"
+        :prepend-icon="mdiPlus"
         color="success"
         class="mb-2"
         block
@@ -32,7 +34,7 @@ onMounted(() => expanded.value = [0, 1, 2, 3, 4]);
           {{ item.mainTitle }}
           <v-spacer />
           <v-btn
-            icon="mdi-pencil"
+            :icon="mdiPencil"
             variant="text"
             @click.stop="emit('edit', {data: item, i})"
           />

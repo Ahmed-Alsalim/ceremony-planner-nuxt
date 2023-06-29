@@ -1,4 +1,5 @@
 <script setup>
+import { mdiDotsVertical, mdiTable, mdiCalendar, mdiLogout } from '@mdi/js';
 import { useI18n } from 'vue-i18n';
 const { locale } = useI18n();
 
@@ -33,7 +34,7 @@ const drawer = ref(false);
         <v-btn :text="$t('date.sheet')" />
       </nuxtLink>
 
-      <v-btn icon="mdi-dots-vertical" />
+      <v-btn :icon="mdiDotsVertical" />
     </template>
 
     <v-btn
@@ -52,13 +53,13 @@ const drawer = ref(false);
     <v-list v-model="currentRoute" nav>
       <v-list-item
         :title="$t('summary.table')"
-        prepend-icon="mdi-table"
+        :prepend-icon="mdiTable"
         to="/"
       />
 
       <v-list-item
         :title="$t('date.sheet')"
-        prepend-icon="mdi-calendar"
+        :prepend-icon="mdiCalendar"
         to="/dateSheet"
       />
     </v-list>
@@ -66,7 +67,7 @@ const drawer = ref(false);
       <div v-if="false" class="ma-2">
         <v-btn
           :text="$t('logout')"
-          prepend-icon="mdi-logout"
+          :prepend-icon="mdiLogout"
           color="red-darken-1"
           block
         />

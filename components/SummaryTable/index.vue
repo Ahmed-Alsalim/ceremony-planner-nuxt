@@ -1,4 +1,6 @@
 <script setup>
+import { mdiPlus, mdiPencil } from '@mdi/js';
+
 const emit = defineEmits(['edit']);
 
 const tableData = useTableData();
@@ -36,7 +38,7 @@ const sermonsCount = (mainTopic) => {
                 icon
                 @click="emit('edit', {data: null, i: null})"
               >
-                <v-icon icon="mdi-plus" />
+                <v-icon :icon="mdiPlus" />
                 <v-tooltip :text="$t('add')" activator="parent" location="bottom" />
               </v-btn>
             </template>
@@ -60,7 +62,7 @@ const sermonsCount = (mainTopic) => {
                 width="1"
               >
                 <v-btn
-                  icon="mdi-pencil"
+                  :icon="mdiPencil"
                   density="comfortable"
                   variant="text"
                   @click.stop="emit('edit', {data: item, i})"

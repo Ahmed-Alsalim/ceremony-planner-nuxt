@@ -14,7 +14,7 @@ onMounted(() => expanded.value = [0, 1, 2, 3, 4]);
     <v-expansion-panels v-model="expanded" multiple>
       <v-btn
         v-if="tableData.length < 4"
-        :text="$t('add.bouquet')"
+        :text="$t('add.main.theme')"
         :prepend-icon="mdiPlus"
         color="success"
         class="mb-2"

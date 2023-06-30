@@ -38,5 +38,14 @@ module.exports = {
       },
     }],
     'object-curly-spacing': ['error', 'always'],
+    'array-bracket-spacing': ['error', 'never'],
   },
+  overrides: [
+    {
+      files: ['server/*'],
+      rules: {
+        'no-console': 'off',
+      },
+    },
+  ],
 };

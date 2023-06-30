@@ -10,6 +10,15 @@ export default defineNuxtConfig({
   css: [
     'vuetify/lib/styles/main.sass',
   ],
+  runtimeConfig: {
+    mongoUrl: process.env.MONGO_URL,
+    jwtSecret: process.env.JWT_SECRET,
+  },
+  nitro: {
+    plugins: [
+      '~/server/mongoConnection.ts',
+    ],
+  },
   // devtools:{
   //   enabled: true
   // },

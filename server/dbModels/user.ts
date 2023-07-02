@@ -6,7 +6,6 @@ const userSchema = new mongoose.Schema({
   password: { type: String, bcrypt: true, required: true },
   name: { type: String, required: true },
   role: { type: String, default: 'user' },
-  token: { type: String },
 }, { timestamps: true });
 
 userSchema.plugin(bcrypt);

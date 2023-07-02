@@ -21,20 +21,18 @@ const handleLogin = async () => {
     return;
   }
 
-  const route = useRoute();
-
-  const { error, url } = await signIn('credentials', {
+  const { error } = await signIn('credentials', {
     email: formData.value.email,
     password: formData.value.password,
     redirect: false,
-    callbackUrl: route.query.callbackUrl || '/',
+    callbackUrl: '/',
   });
 
   if (error) {
     return loginFailed.value = true;
   }
 
-  navigateTo(url, { external: true });
+  navigateTo('/');
 };
 </script>
 
@@ -49,7 +47,7 @@ const handleLogin = async () => {
           <v-card-text>
             <v-alert
               v-if="loginFailed"
-              :text="$t('auth.invalidEmailOrPassword')"
+              :text="$t('auth.invalid.credentials')"
               type="error"
               density="compact"
               class="mb-4"

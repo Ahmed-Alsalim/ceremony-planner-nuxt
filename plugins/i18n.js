@@ -33,6 +33,7 @@ export default defineNuxtPlugin(({ vueApp }) => {
         'auth.login': 'Login',
         'auth.logout': 'Logout',
         'auth.create.account': 'Create an account',
+        'auth.invalid.credentials': 'Invalid email or password',
         'USER_EXISTS': 'User already exists',
       },
       ar: {
@@ -61,6 +62,7 @@ export default defineNuxtPlugin(({ vueApp }) => {
         'auth.login': 'تسجيل الدخول',
         'auth.logout': 'تسجيل الخروج',
         'auth.create.account': 'إنشاء حساب',
+        'auth.invalid.credentials': 'البريد الإلكتروني أو كلمة المرور غير صحيحة',
         'USER_EXISTS': 'المستخدم موجود بالفعل',
       },
     },

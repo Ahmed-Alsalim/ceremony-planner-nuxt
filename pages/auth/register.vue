@@ -46,7 +46,6 @@ const submit = async () => {
       navigateTo('/auth/login');
     })
     .catch(({ response }) => {
-      console.debug('response', response.statusText);
       hasError.value = response.statusText;
     });
 };

@@ -2,6 +2,8 @@
 import { mdiDotsVertical, mdiTable, mdiCalendar, mdiLogout } from '@mdi/js';
 import { useI18n } from 'vue-i18n';
 const { locale } = useI18n();
+const { status, signOut } = useAuth();
+
 
 const toggleLocale = () => {
   locale.value = locale.value === 'ar' ? 'en' : 'ar';
@@ -38,6 +40,13 @@ const drawer = ref(false);
     </template>
 
     <v-btn
+      v-if="status === 'authenticated'"
+      :icon="mdiLogout"
+      color="red-darken-1"
+      @click="signOut"
+    />
+
+    <v-btn
       :text="locale === 'ar' ? 'EN' : 'ع'"
       color="success"
       @click="toggleLocale"
@@ -64,12 +73,13 @@ const drawer = ref(false);
       />
     </v-list>
     <template #append>
-      <div v-if="false" class="ma-2">
+      <div class="ma-2">
         <v-btn
-          :text="$t('logout')"
+          :text="$t('auth.logout')"
           :prepend-icon="mdiLogout"
           color="red-darken-1"
           block
+          @click="signOut"
         />
       </div>
     </template>

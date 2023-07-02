@@ -10,9 +10,10 @@
   },
   "dependencies": {
     "@mdi/js": "^7.2.96",
-    "jsonwebtoken": "^9.0.0",
+    "@sidebase/nuxt-auth": "^0.5.0",
     "mongoose": "^7.3.1",
     "mongoose-bcrypt": "^1.10.1",
+    "next-auth": "^4.21.1",
     "nuxt": "^3.6.1",
     "nuxt-lodash": "^2.5.0",
     "sass": "^1.63.6",

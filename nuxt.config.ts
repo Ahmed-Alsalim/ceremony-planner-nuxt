@@ -3,7 +3,11 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     'nuxt-lodash',
+    '@sidebase/nuxt-auth',
   ],
+  auth: {
+    enableGlobalAppMiddleware: true,
+  },
   build: {
     transpile: ['vuetify'],
   },
@@ -12,7 +16,8 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     mongoUrl: process.env.MONGO_URL,
-    jwtSecret: process.env.JWT_SECRET,
+    authSecret: process.env.NEXTAUTH_SECRET,
+    origin: process.env.AUTH_ORIGIN,
   },
   nitro: {
     plugins: [

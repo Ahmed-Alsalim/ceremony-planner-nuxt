@@ -5,6 +5,10 @@ module.exports = {
     es2021: true,
     node: true,
   },
+  parserOptions: {
+    ecmaVersion: 12,
+    parser: '@typescript-eslint/parser',
+  },
   extends: ['plugin:vue/vue3-recommended'],
   rules: {
     'indent': ['error', 2],

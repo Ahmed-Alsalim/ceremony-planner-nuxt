@@ -1,58 +1,91 @@
 <script setup>
+definePageMeta({
+  auth: {
+    unauthenticatedOnly: true,
+    navigateAuthenticatedTo: '/',
+  },
+});
+const { signIn } = useAuth();
 const formValid = ref(true);
+const loginFailed = ref(false);
 const rules = {
   required: [(v) => !!v],
 };
 const formData = ref({
-  email: 'ahmed@me.com',
-  password: '12345678',
+  email: '',
+  password: '',
 });
 
-const submit = async () => {
+const handleLogin = async () => {
   if (!formValid.value) {
     return;
   }
 
-  await $fetch(
-    '/api/auth/login',
-    {
-      method: 'POST',
-      body: formData.value,
-    })
-    .then(() => {
-      navigateTo('/');
-    })
-    .catch(({ response }) => {
-      // eslint-disable-next-line no-console
-      console.debug('err', response);
-    });
+  const route = useRoute();
 
+  const { error, url } = await signIn('credentials', {
+    email: formData.value.email,
+    password: formData.value.password,
+    redirect: false,
+    callbackUrl: route.query.callbackUrl || '/',
+  });
+
+  if (error) {
+    return loginFailed.value = true;
+  }
+
+  navigateTo(url, { external: true });
 };
 </script>
 
 <template>
-  <h1>Login</h1>
-  <v-form>
-    <v-text-field
-      v-model="formData.email"
-      :rules="rules.required"
-      label="Email"
-    />
-    <v-text-field
-      v-model="formData.password"
-      :rules="rules.required"
-      label="Password"
-      type="password"
-    />
-    <v-btn
-      color="primary"
-      @click="submit"
-    >
-      Login
-    </v-btn>
-  </v-form>
+  <v-container>
+    <v-row justify="center">
+      <v-col xs="12" sm="8" md="6">
+        <v-card>
+          <v-card-title class="mb-2">
+            {{ $t('auth.login') }}
+          </v-card-title>
+          <v-card-text>
+            <v-alert
+              v-if="loginFailed"
+              :text="$t('auth.invalidEmailOrPassword')"
+              type="error"
+              density="compact"
+              class="mb-4"
+            />
+
+            <v-form
+              v-model="formValid"
+              @submit.prevent="handleLogin"
+            >
+              <v-text-field
+                v-model="formData.email"
+                :rules="rules.required"
+                :label="$t('auth.email')"
+              />
+              <v-text-field
+                v-model="formData.password"
+                :rules="rules.required"
+                :label="$t('auth.password')"
+                type="password"
+              />
+              <v-btn
+                :text="$t('auth.login')"
+                color="primary"
+                type="submit"
+                block
+              />
+            </v-form>
+
+            <v-label class="mt-4">
+              <nuxtLink to="/auth/register">
+                {{ $t('auth.create.account') }}
+              </nuxtLink>
+            </v-label>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
-
-<style>
-
-</style>

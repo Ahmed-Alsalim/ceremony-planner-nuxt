@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   ],
   auth: {
     enableGlobalAppMiddleware: true,
+    origin: process.env.AUTH_ORIGIN,
   },
   build: {
     transpile: ['vuetify'],

@@ -72,7 +72,7 @@ const drawer = ref(false);
         to="/dateSheet"
       />
     </v-list>
-    <template #append>
+    <template v-if="status === 'authenticated'" #append>
       <div class="ma-2">
         <v-btn
           :text="$t('auth.logout')"

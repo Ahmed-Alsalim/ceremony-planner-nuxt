@@ -6,8 +6,12 @@ export default defineNuxtConfig({
     '@sidebase/nuxt-auth',
   ],
   auth: {
+    provider: {
+      type: 'authjs',
+      addDefaultCallbackUrl: true,
+    },
+    baseURL: process.env.AUTH_ORIGIN,
     globalAppMiddleware: true,
-    origin: process.env.AUTH_ORIGIN,
   },
   build: {
     transpile: ['vuetify'],
@@ -18,7 +22,6 @@ export default defineNuxtConfig({
   runtimeConfig: {
     mongoUrl: process.env.MONGO_URL,
     authSecret: process.env.NEXTAUTH_SECRET,
-    origin: process.env.AUTH_ORIGIN,
   },
   nitro: {
     plugins: [

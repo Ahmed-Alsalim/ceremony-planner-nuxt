@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     '@sidebase/nuxt-auth',
   ],
   auth: {
-    enableGlobalAppMiddleware: true,
+    globalAppMiddleware: true,
     origin: process.env.AUTH_ORIGIN,
   },
   build: {

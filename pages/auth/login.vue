@@ -1,13 +1,15 @@
 <script setup>
 const { signIn } = useAuth();
+
 const formValid = ref(true);
 const loginFailed = ref(false);
+
 const rules = {
   required: [(v) => !!v],
 };
 const formData = ref({
-  email: '',
-  password: '',
+  email: 'ahmed@me.com',
+  password: '12345678',
 });
 
 const handleLogin = async () => {
@@ -15,18 +17,14 @@ const handleLogin = async () => {
     return;
   }
 
-  try {
-    await signIn('credentials', {
-      email: formData.value.email,
-      password: formData.value.password,
-      redirect: false,
-      callbackUrl: '/',
+  signIn('credentials', {
+    email: formData.value.email,
+    password: formData.value.password,
+    callbackUrl: '/',
+  })
+    .catch(() => {
+      loginFailed.value = true;
     });
-
-    navigateTo('/');
-  } catch (error) {
-    loginFailed.value = true;
-  }
 };
 </script>
 

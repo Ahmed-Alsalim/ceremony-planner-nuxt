@@ -1,16 +1,17 @@
-const config = useRuntimeConfig();
 import { NuxtAuthHandler } from '#auth';
-import CredentialsProvider from 'next-auth/providers/credentials';
+import CredentialsProvider from '@auth/core/providers/credentials';
+import type { AuthConfig } from '@auth/core/types';
 import User from '../../dbModels/user';
 
-export default NuxtAuthHandler({
+const config = useRuntimeConfig();
+
+export const authOptions: AuthConfig = {
   pages: {
     signIn: '/auth/login',
   },
   secret: config.authSecret,
   providers: [
-    // @ts-expect-error .default is needed in ssr mode
-    CredentialsProvider.default({
+    CredentialsProvider({
       name: 'credentials',
       async authorize(credentials : any) {
         const user: any = await User.findOne({ email: credentials.email });
@@ -29,4 +30,6 @@ export default NuxtAuthHandler({
       },
     }),
   ],
-});
+};
+
+export default NuxtAuthHandler(authOptions, config);

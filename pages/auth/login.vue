@@ -1,10 +1,4 @@
 <script setup>
-definePageMeta({
-  auth: {
-    unauthenticatedOnly: true,
-    navigateAuthenticatedTo: '/',
-  },
-});
 const { signIn } = useAuth();
 const formValid = ref(true);
 const loginFailed = ref(false);
@@ -21,18 +15,18 @@ const handleLogin = async () => {
     return;
   }
 
-  const { error } = await signIn('credentials', {
-    email: formData.value.email,
-    password: formData.value.password,
-    redirect: false,
-    callbackUrl: '/',
-  });
+  try {
+    await signIn('credentials', {
+      email: formData.value.email,
+      password: formData.value.password,
+      redirect: false,
+      callbackUrl: '/',
+    });
 
-  if (error) {
-    return loginFailed.value = true;
+    navigateTo('/');
+  } catch (error) {
+    loginFailed.value = true;
   }
-
-  navigateTo('/');
 };
 </script>
 

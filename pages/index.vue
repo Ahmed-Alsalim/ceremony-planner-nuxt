@@ -1,4 +1,6 @@
 <script setup>
+definePageMeta({ middleware: 'auth' });
+
 import { useDisplay } from 'vuetify';
 const { xs } = useDisplay();
 
@@ -37,7 +39,6 @@ const save = (data) => {
 
   <SummaryTable
     v-else
-    :columns="columns"
     @edit="editItem"
   />
 

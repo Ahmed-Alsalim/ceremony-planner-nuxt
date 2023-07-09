@@ -1,4 +1,6 @@
 <script setup>
+definePageMeta({ middleware: 'auth' });
+
 import { useDisplay } from 'vuetify';
 
 const tableData = useTableData();
